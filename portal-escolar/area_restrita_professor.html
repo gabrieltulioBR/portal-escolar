@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área do Professor - Portal Escolar</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .dashboard-professor {
+            padding: 2rem 0;
+        }
+        
+        .abas {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .aba {
+            padding: 1rem 2rem;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .aba.ativa {
+            background: #3498db;
+            color: white;
+        }
+        
+        .conteudo-aba {
+            display: none;
+        }
+        
+        .conteudo-aba.ativa {
+            display: block;
+        }
+        
+        .turmas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .turma-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .alunos-lista {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .aluno-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .form-lancamento {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .notas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .resumo-assunto {
+            background: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🏫</span>
+                <h1>Portal Escolar - Professor</h1>
+            </div>
+            <nav>
+                <ul>
+                    <!-- Menu será atualizado pelo JavaScript -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h2>Área do Professor</h2>
+                <p id="nomeProfessor">Bem-vindo, Professor!</p>
+            </div>
+        </section>
+
+        <section class="dashboard-professor">
+            <div class="container">
+                <!-- ABAS -->
+                <div class="abas">
+                    <button class="aba ativa" onclick="mostrarAba('minhas-turmas')">📚 Minhas Turmas</button>
+                    <button class="aba" onclick="mostrarAba('lancar-notas')">📊 Lançar Notas</button>
+                    <button class="aba" onclick="mostrarAba('registrar-faltas')">📝 Registrar Faltas</button>
+                    <button class="aba" onclick="mostrarAba('resumos')">📋 Resumos de Aula</button>
+                </div>
+
+                <!-- CONTEÚDO DAS ABAS -->
+                
+                <!-- ABA 1: MINHAS TURMAS -->
+                <div id="minhas-turmas" class="conteudo-aba ativa">
+                    <h3>Minhas Turmas e Alunos</h3>
+                    <div class="turmas-grid" id="lista-turmas">
+                        <!-- Turmas serão carregadas via JavaScript -->
+                    </div>
+                </div>
+
+                <!-- ABA 2: LANÇAR NOTAS -->
+                <div id="lancar-notas" class="conteudo-aba">
+                    <h3>Lançar Notas dos Alunos</h3>
+                    <div class="form-lancamento">
+                        <div class="form-group">
+                            <label for="select-turma-notas">Selecionar Turma:</label>
+                            <select id="select-turma-notas" class="config-input">
+                                <option value="">Selecione uma turma</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="select-bimestre">Bimestre:</label>
+                            <select id="select-bimestre" class="config-input">
+                                <option value="1">1º Bimestre</option>
+                                <option value="2">2º Bimestre</option>
+                                <option value="3">3º Bimestre</option>
+                                <option value="4">4º Bimestre</option>
+                            </select>
+                        </div>
+                        <div id="lista-alunos-notas">
+                            <!-- Lista de alunos para lançar notas -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ABA 3: REGISTRAR FALTAS -->
+                <div id="registrar-faltas" class="conteudo-aba">
+                    <h3>Registrar Faltas</h3>
+                    <div class="form-lancamento">
+                        <div class="form-group">
+                            <label for="select-turma-faltas">Selecionar Turma:</label>
+                            <select id="select-turma-faltas" class="config-input">
+                                <option value="">Selecione uma turma</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="data-falta">Data da Falta:</label>
+                            <input type="date" id="data-falta" class="config-input">
+                        </div>
+                        <div id="lista-alunos-faltas">
+                            <!-- Lista de alunos para registrar faltas -->
+                        </div>
+                        <button class="btn" onclick="registrarFaltas()">✅ Registrar Faltas</button>
+                    </div>
+                </div>
+
+                <!-- ABA 4: RESUMOS DE AULA -->
+                <div id="resumos" class="conteudo-aba">
+                    <h3>Resumos de Aula por Unidade</h3>
+                    <div class="form-lancamento">
+                        <div class="form-group">
+                            <label for="select-turma-resumo">Selecionar Turma:</label>
+                            <select id="select-turma-resumo" class="config-input">
+                                <option value="">Selecione uma turma</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="unidade-resumo">Unidade:</label>
+                            <select id="unidade-resumo" class="config-input">
+                                <option value="1">Unidade 1</option>
+                                <option value="2">Unidade 2</option>
+                                <option value="3">Unidade 3</option>
+                                <option value="4">Unidade 4</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="titulo-resumo">Título do Resumo:</label>
+                            <input type="text" id="titulo-resumo" class="config-input" placeholder="Ex: Introdução à Álgebra">
+                        </div>
+                        <div class="form-group">
+                            <label for="conteudo-resumo">Conteúdo do Resumo:</label>
+                            <textarea id="conteudo-resumo" class="config-input" rows="6" placeholder="Digite o resumo do conteúdo desta unidade..."></textarea>
+                        </div>
+                        <button class="btn" onclick="salvarResumo()">💾 Salvar Resumo</button>
+                    </div>
+                    
+                    <div id="resumos-salvos" style="margin-top: 2rem;">
+                        <h4>Resumos Salvos</h4>
+                        <div id="lista-resumos">
+                            <!-- Resumos salvos aparecerão aqui -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script src="js/professor.js"></script>
+</body>
+</html>

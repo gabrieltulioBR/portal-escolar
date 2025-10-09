@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Escolar - Página Inicial</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- FAVICON COMPLETO -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="favicon_io/site.webmanifest">
+</head>
+<body>
+    <header>
+        <div class="logo">
+    <img src="favicon_io/favicon-32x32.png" alt="Portal" class="logo-icon">
+<h1>portal escolar</h1>
+</div>
+            <nav>
+                <ul id="menu-principal">
+                    <!-- Menu será atualizado pelo JavaScript -->
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h2>Bem-vindo ao Portal Escolar</h2>
+                <p>Conectando alunos, professores e famílias em um só lugar</p>
+                <div id="mensagem-usuario" style="margin-top: 1rem;"></div>
+            </div>
+        </section>
+
+        <section class="avisos">
+            <div class="container">
+                <h2>Avisos Importantes</h2>
+                <div class="avisos-grid">
+                    <div class="aviso-card importante">
+                        <h3>📢 Reunião de Pais</h3>
+                        <p>Dia 15/11 às 19h no auditório principal</p>
+                    </div>
+                    <div class="aviso-card">
+                        <h3>📚 Período de Matrículas</h3>
+                        <p>Matrículas abertas para 2025 até 30/11</p>
+                    </div>
+                    <div class="aviso-card">
+                        <h3>🎓 Feira de Profissões</h3>
+                        <p>Evento acontecerá no dia 20/11</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="acesso-rapido">
+            <div class="container">
+                <h2>Acesso Rápido</h2>
+                <div class="cards-acesso">
+                    <!-- Card de Login -->
+                    <div class="card-acesso">
+                        <div class="icone">🔐</div>
+                        <h3>Área de Login</h3>
+                        <p>Acesse sua área personalizada</p>
+                        <a href="login.html" class="btn" style="margin-top: 1rem;">Fazer Login</a>
+                    </div>
+
+                    <!-- Card para Visitantes -->
+                    <div class="card-acesso">
+                        <div class="icone">👀</div>
+                        <h3>Conheça a Escola</h3>
+                        <p>Veja nossas instalações e projetos</p>
+                        <a href="galeria.html" class="btn" style="margin-top: 1rem;">Ver Galeria</a>
+                    </div>
+
+                    <!-- Card de Informações -->
+                    <div class="card-acesso">
+                        <div class="icone">📞</div>
+                        <h3>Fale Conosco</h3>
+                        <p>Entre em contato com a escola</p>
+                        <a href="contato.html" class="btn" style="margin-top: 1rem;">Contato</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+     <section class="destaques">
+    <div class="container">
+        <h2>Destaques da Escola</h2>
+        <div class="destaques-grid">
+            <div class="destaque-card">
+                <div class="destaque-img">
+                    <img src="imagens/evento/Olimpiadas-de-Matematica-1.jpg" alt="Olimpíada de Matemática">
+                </div>
+                <h3>Olimpíada de Matemática</h3>
+                <p>Nossos alunos conquistaram 3 medalhas na OBMEP</p>
+            </div>
+            <div class="destaque-card">
+                <div class="destaque-img">
+                    <img src="imagens/evento/Projeto-Sustentabilidade.jpeg" alt="Projeto Sustentabilidade">
+                </div>
+                <h3>Projeto Sustentabilidade</h3>
+                <p>Alunos criam horta orgânica na escola</p>
+            </div>
+            <div class="destaque-card">
+                <div class="destaque-img">
+                    <img src="imagens/evento/Festival-de-Artes.png" alt="Festival de Artes">
+                </div>
+                <h3>Festival de Artes</h3>
+                <p>Exposição de trabalhos artísticos dos alunos</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- Seção que só aparece para usuários logados -->
+        <section id="area-logada" class="avisos" style="display: none;">
+            <div class="container">
+                <h2>Seu Acesso Rápido</h2>
+                <div class="avisos-grid">
+                    <div class="aviso-card" id="card-aluno" style="display: none;">
+                        <h3>👨‍🎓 Área do Aluno</h3>
+                        <p>Acesse suas notas, faltas e materiais</p>
+                        <a href="area_restrita_aluno.html" class="btn" style="margin-top: 1rem;">Minha Área</a>
+                    </div>
+                    <div class="aviso-card" id="card-professor" style="display: none;">
+                        <h3>👨‍🏫 Área do Professor</h3>
+                        <p>Gerencie turmas, notas e faltas</p>
+                        <a href="area_restrita_professor.html" class="btn" style="margin-top: 1rem;">Minha Área</a>
+                    </div>
+                    <div class="aviso-card">
+                        <h3>📚 Exercícios de Lógica</h3>
+                        <p>Pratique com nossos simulados interativos</p>
+                        <a href="logica.html" class="btn" style="margin-top: 1rem;">Fazer Exercícios</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Portal Escolar. Todos os direitos reservados.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">
+                Sistema de Gestão Escolar Integrado
+            </p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Controle específico da página inicial
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = localStorage.getItem('currentUser');
+            const areaLogada = document.getElementById('area-logada');
+            const cardAluno = document.getElementById('card-aluno');
+            const cardProfessor = document.getElementById('card-professor');
+            const mensagemUsuario = document.getElementById('mensagem-usuario');
+
+            if (user) {
+                const userData = JSON.parse(user);
+                
+                // Mostrar mensagem de boas-vindas
+                mensagemUsuario.innerHTML = `
+                    <div style="background: #d4edda; color: #155724; padding: 1rem; border-radius: 8px; text-align: center;">
+                        <strong>Olá, ${userData.nome}!</strong> Bem-vindo de volta ao Portal Escolar.
+                    </div>
+                `;
+
+                // Mostrar área logada
+                areaLogada.style.display = 'block';
+
+                // Mostrar card específico baseado no tipo de usuário
+                if (userData.tipo === 'aluno') {
+                    cardAluno.style.display = 'block';
+                } else if (userData.tipo === 'professor') {
+                    cardProfessor.style.display = 'block';
+                }
+            } else {
+                // Usuário não logado - mensagem de convite
+                mensagemUsuario.innerHTML = `
+                    <div style="background: #e3f2fd; color: #1565c0; padding: 1rem; border-radius: 8px; text-align: center;">
+                        <strong>Faça login</strong> para acessar todas as funcionalidades do portal!
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

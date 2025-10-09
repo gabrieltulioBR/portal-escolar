@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área do Aluno - Portal Escolar</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .dashboard-aluno {
+            padding: 2rem 0;
+        }
+        
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .info-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .info-card h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .info-card .numero {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #3498db;
+        }
+        
+        .tabela-notas {
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+        
+        .resumos-lista {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .resumo-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .resumo-card h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🏫</span>
+                <h1>Portal Escolar - Aluno</h1>
+            </div>
+            <nav>
+                <ul>
+                    <!-- Menu será atualizado pelo JavaScript -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h2>Área do Aluno</h2>
+                <p id="nomeAluno">Bem-vindo, Aluno!</p>
+            </div>
+        </section>
+
+        <section class="dashboard-aluno">
+            <div class="container">
+                <!-- CARDS DE INFORMAÇÃO -->
+                <div class="info-cards">
+                    <div class="info-card">
+                        <h3>📊 Média Geral</h3>
+                        <div class="numero" id="media-geral">-</div>
+                    </div>
+                    <div class="info-card">
+                        <h3>📝 Faltas</h3>
+                        <div class="numero" id="total-faltas">-</div>
+                    </div>
+                    <div class="info-card">
+                        <h3>🎯 Situação</h3>
+                        <div id="situacao-aluno">-</div>
+                    </div>
+                </div>
+
+                <!-- NOTAS POR MATÉRIA -->
+                <h3>📈 Minhas Notas</h3>
+                <div class="tabela-notas">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Matéria</th>
+                                <th>1º Bim</th>
+                                <th>2º Bim</th>
+                                <th>3º Bim</th>
+                                <th>4º Bim</th>
+                                <th>Média</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabela-notas">
+                            <!-- Notas serão carregadas via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- FREQUÊNCIA -->
+                <h3>📅 Minha Frequência</h3>
+                <div class="info-card">
+                    <div id="grafico-frequencia">
+                        <!-- Gráfico de frequência será gerado aqui -->
+                    </div>
+                    <p>Total de aulas: <span id="total-aulas">-</span></p>
+                    <p>Frequência: <span id="percentual-frequencia">-</span>%</p>
+                </div>
+
+                <!-- RESUMOS DAS AULAS -->
+                <h3>📚 Resumos das Aulas</h3>
+                <div class="resumos-lista" id="lista-resumos-aluno">
+                    <!-- Resumos serão carregados via JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script src="js/aluno.js"></script>
+</body>
+</html>

@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios de Lógica - Portal Escolar</title>
+    <link rel="stylesheet" href="css/style.css">
+    
+
+    <style>
+
+        .selecao-questoes {
+            padding: 3rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin-bottom: 0;
+        }
+
+        .configurador {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            color: #333;
+            backdrop-filter: blur(10px);
+        }
+
+        .configurador h3 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .config-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .config-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .config-group label {
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+
+        .config-input {
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .config-input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .btn-grande {
+            padding: 1.2rem 2.5rem;
+            font-size: 1.2rem;
+            width: 100%;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-grande:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(52, 152, 219, 0.3);
+            background: linear-gradient(135deg, #2980b9, #34495e);
+        }
+
+        /* STATUS DA API */
+        .status-api {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .status-api .loading {
+            background: #fff3cd;
+            color: #856404;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #ffeaa7;
+        }
+
+        .status-api .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status-api .warning {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* ÁREA DE QUESTÕES */
+        .area-questoes {
+            padding: 3rem 0;
+            background: #f8f9fa;
+            min-height: 80vh;
+            display: none;
+        }
+
+        .cabecalho-simulado {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            border-left: 5px solid #3498db;
+        }
+
+        .info-simulado h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .dados-simulado {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .dados-simulado span {
+            background: #e3f2fd;
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            color: #2c3e50;
+            font-weight: 600;
+            border: 1px solid #bbdefb;
+        }
+
+        .controles-simulado {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .timer-simulado, .progresso-simulado {
+            background: #e3f2fd;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 700;
+            color: #2c3e50;
+            border: 1px solid #bbdefb;
+        }
+
+        .timer-simulado.urgente {
+            background: #ffebee;
+            color: #c62828;
+            border-color: #ffcdd2;
+            animation: pulse 1s infinite;
+        }
+
+        .btn-finalizar {
+            background: #27ae60;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-finalizar:hover {
+            background: #219a52;
+            transform: translateY(-2px);
+        }
+
+        /* LISTA DE QUESTÕES */
+        .lista-questoes {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .questao-item {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #3498db;
+            transition: all 0.3s ease;
+            animation: slideInUp 0.5s ease;
+        }
+
+        .questao-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .questao-cabecalho {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .questao-numero {
+            background: #3498db;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .questao-dificuldade {
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .dificuldade-facil {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .dificuldade-medio {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .dificuldade-dificil {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .questao-enunciado {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .questao-alternativas {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .alternativa {
+            display: flex;
+            align-items: center;
+            padding: 1.2rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .alternativa:hover {
+            border-color: #3498db;
+            background: #e3f2fd;
+            transform: translateX(5px);
+        }
+
+        .alternativa.selecionada {
+            border-color: #3498db;
+            background: #e3f2fd;
+            box-shadow: 0 2px 10px rgba(52, 152, 219, 0.2);
+        }
+
+        .alternativa input {
+            margin-right: 1.2rem;
+            transform: scale(1.2);
+        }
+
+        .alternativa label {
+            cursor: pointer;
+            flex: 1;
+            font-size: 1.1rem;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        /* RESULTADO */
+        .resultado {
+            padding: 3rem 0;
+            display: none;
+        }
+
+        .card-resultado {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+            border: 2px solid #e9ecef;
+        }
+
+        .card-resultado h3 {
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .estatisticas {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        .estatistica {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem;
+            border-radius: 15px;
+            background: #f8f9fa;
+        }
+
+        .numero {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .estatistica:nth-child(1) .numero {
+            color: #27ae60;
+        }
+
+        .estatistica:nth-child(2) .numero {
+            color: #e74c3c;
+        }
+
+        .estatistica:nth-child(3) .numero {
+            color: #3498db;
+        }
+
+        .label {
+            color: #6c757d;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .feedback {
+            margin: 2.5rem 0;
+            padding: 2rem;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            font-weight: 600;
+        }
+
+        .feedback.excelente {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+        }
+
+        .feedback.bom {
+            background: #fff3cd;
+            color: #856404;
+            border: 2px solid #ffeaa7;
+        }
+
+        .feedback.regular {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #f5c6cb;
+        }
+
+        #novoSimulado {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #novoSimulado:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(52, 152, 219, 0.3);
+        }
+
+        /* ANIMAÇÕES EXCLUSIVAS */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                transform: scale(1); 
+            }
+            50% { 
+                transform: scale(1.05); 
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .questao-item {
+            animation: slideInUp 0.6s ease;
+        }
+
+        .card-resultado {
+            animation: bounceIn 0.8s ease;
+        }
+
+        /* RESPONSIVIDADE ESPECÍFICA */
+        @media (max-width: 768px) {
+            .config-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cabecalho-simulado {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+            
+            .controles-simulado {
+                justify-content: center;
+            }
+            
+            .estatisticas {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .questao-item {
+                padding: 2rem;
+            }
+            
+            .alternativa {
+                padding: 1rem;
+            }
+            
+            .configurador {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .configurador {
+                padding: 1.5rem;
+            }
+            
+            .card-resultado {
+                padding: 2rem 1.5rem;
+            }
+            
+            .dados-simulado {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            
+            .questao-enunciado {
+                font-size: 1.1rem;
+            }
+            
+            .alternativa label {
+                font-size: 1rem;
+            }
+            
+            .numero {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* ESTILOS PARA CARREGAMENTO */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* BADGES ESPECIAIS */
+        .badge-questao {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: #3498db;
+            color: white;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        /* EFECTOS DE FOCO */
+        .questao-item:focus-within {
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+        }
+
+        /* TRANSITIONS SUAVES */
+        * {
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🏫</span>
+                <h1>Portal Escolar</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="professores.html">Professores</a></li>
+                    <li><a href="noticias.html">Notícias</a></li>
+                    <li><a href="galeria.html">Galeria</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="logica.html" class="active">Exercícios</a></li>
+                    <li><a href="login.html" class="login-btn">Login</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h2>Exercícios Personalizados</h2>
+                <p>Escolha a matéria, dificuldade e quantidade de questões</p>
+            </div>
+        </section>
+
+        <!-- SELEÇÃO DE QUESTÕES -->
+        <section class="selecao-questoes">
+            <div class="container">
+                <div class="configurador">
+                    <h3>🎯 Configurar Seu Simulado</h3>
+                    
+                    <div class="config-grid">
+                        <!-- Matéria -->
+                        <div class="config-group">
+                            <label for="materia">📚 Matéria:</label>
+                            <select id="materia" class="config-input">
+                                <option value="matematica">Matemática</option>
+                                <option value="portugues">Português</option>
+                                <option value="ciencias">Ciências</option>
+                                <option value="historia">História</option>
+                                <option value="geografia">Geografia</option>
+                                <option value="logica">Lógica</option>
+                            </select>
+                        </div>
+
+                        <!-- Dificuldade -->
+                        <div class="config-group">
+                            <label for="dificuldade">🎯 Dificuldade:</label>
+                            <select id="dificuldade" class="config-input">
+                                <option value="facil">Fácil</option>
+                                <option value="medio">Médio</option>
+                                <option value="dificil">Difícil</option>
+                            </select>
+                        </div>
+
+                        <!-- Quantidade -->
+                        <div class="config-group">
+                            <label for="quantidade">📊 Quantidade:</label>
+                            <select id="quantidade" class="config-input">
+                                <option value="5">5 questões</option>
+                                <option value="9">9 questões</option>
+                                <option value="15">15 questões</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-grande" id="gerarQuestoes">
+                        🚀 Gerar Questões Aleatórias
+                    </button>
+
+                    <div class="status-api" id="statusAPI" style="display: none;">
+                        <div class="loading">⏳ Conectando com servidor de questões...</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ÁREA DAS QUESTÕES -->
+        <section class="area-questoes" id="areaQuestoes" style="display: none;">
+            <div class="container">
+                <!-- CABEÇALHO DO SIMULADO -->
+                <div class="cabecalho-simulado">
+                    <div class="info-simulado">
+                        <h3 id="tituloSimulado">Simulado</h3>
+                        <div class="dados-simulado">
+                            <span id="infoMateria"></span>
+                            <span id="infoDificuldade"></span>
+                            <span id="infoQuantidade"></span>
+                        </div>
+                    </div>
+                    <div class="controles-simulado">
+                        <div class="timer-simulado">
+                            ⏰ <span id="timer">30:00</span>
+                        </div>
+                        <div class="progresso-simulado">
+                            📈 <span id="progresso">0/0</span>
+                        </div>
+                        <button class="btn btn-finalizar" id="finalizarSimulado">
+                            ✅ Finalizar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- LISTA DE QUESTÕES -->
+                <div class="lista-questoes" id="listaQuestoes"><script src="js/main.js"></script>
+    <script src="js/questoes_api.js"></script>
+    <script src="js/sistema_questoes.js"></script>

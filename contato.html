@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - Portal Escolar</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- FAVICON COMPLETO -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="favicon_io/site.webmanifest">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+   <div class="logo">
+    <img src="favicon_io/favicon-32x32.png" alt="Portal" class="logo-icon">
+<h1>portal escolar</h1>
+</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="professores.html">Professores</a></li>
+                    <li><a href="noticias.html">Notícias</a></li>
+                    <li><a href="galeria.html">Galeria</a></li>
+                    <li><a href="contato.html" class="active">Contato</a></li>
+                    <li><a href="logica.html">Exercícios</a></li>
+                    <li><a href="login.html" class="login-btn">Login</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h2>Entre em Contato</h2>
+                <p>Estamos aqui para ajudar</p>
+            </div>
+        </section>
+
+        <section class="contato">
+            <div class="container">
+                <div class="contato-info">
+                    <h3>Informações de Contato</h3>
+                    <div class="info-item">
+                        <strong>📞 Telefone:</strong>
+                        <p>(11) 1234-5678</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>📧 E-mail:</strong>
+                        <p>contato@escola.com</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>📍 Endereço:</strong>
+                        <p>Rua das Flores, 123 - Centro<br>São Paulo - SP, 01234-567</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>🕒 Horário de Funcionamento:</strong>
+                        <p>Segunda a Sexta: 7h às 18h<br>Sábado: 8h às 12h</p>
+                    </div>
+                </div>
+
+                <div class="form-container">
+                    <h3>Envie uma Mensagem</h3>
+                    <form id="formContato" onsubmit="handleContact(event)">
+                        <div class="form-group">
+                            <label for="nome">Nome Completo</label>
+                            <input type="text" id="nome" name="nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="assunto">Assunto</label>
+                            <input type="text" id="assunto" name="assunto" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensagem">Mensagem</label>
+                            <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-block">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Portal Escolar. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

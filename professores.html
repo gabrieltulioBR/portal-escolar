@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Portal Escolar</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- FAVICON COMPLETO -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="favicon_io/site.webmanifest">
+</head>
+<body>
+    <header>
+        <div class="container">
+   <div class="logo">
+    <img src="favicon_io/favicon-32x32.png" alt="Portal" class="logo-icon">
+<h1>portal escolar</h1>
+</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="professores.html">Professores</a></li>
+                    <li><a href="noticias.html">Notícias</a></li>
+                    <li><a href="galeria.html">Galeria</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="logica.html">Exercícios</a></li>
+                    <li><a href="login.html" class="login-btn active">Login</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h2>Acesso ao Portal</h2>
+                <p>Faça login para acessar sua área restrita</p>
+            </div>
+        </section>
+
+        <section class="login">
+            <div class="container">
+                <div class="form-container">
+                    <form id="formLogin">
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" required value="aluno@escola.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="senha">Senha</label>
+                            <input type="password" id="senha" name="senha" required value="123456">
+                        </div>
+                        <button type="button" class="btn btn-block" onclick="handleLogin()">Entrar</button>
+                    </form>
+                    
+                    <div class="login-demo">
+                        <h4>Credenciais de Demonstração:</h4>
+                        <p><strong>Aluno:</strong> aluno@escola.com / 123456</p>
+                        <p><strong>Professor:</strong> professor@escola.com / 123456</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Portal Escolar. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS ADICIONADOS -->
+    <script src="js/main.js"></script>
+</body>
+</html>
