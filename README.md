@@ -1,27 +1,26 @@
 # 🏫 Portal Escolar  
 
-Bem-vindo ao **Portal Escolar**, um projeto acadêmico desenvolvido por **Gabriel Túlio** é **César Lopes** com o objetivo de criar um sistema web simples e funcional para escolas.  
-O projeto foi construído com foco em **acessibilidade, organização e aprendizado prático** nas áreas de **HTML, CSS, JavaScript, PHP e MySQL**.
+Bem-vindo ao **Portal Escolar**, um projeto acadêmico desenvolvido por **Gabriel Túlio**, **César Lopes** com o objetivo de criar um sistema web funcional e acessível para escolas.  
+O projeto foi construído com foco em **aprendizado prático**, utilizando **HTML, CSS, JavaScript, PHP, Python e MySQL** para integrar front-end, back-end e banco de dados.
 
 ---
 
 ## 🎯 Objetivo do Projeto  
 
-O **Portal Escolar** tem como meta facilitar a comunicação entre **alunos, professores e administração**, centralizando informações em um único ambiente digital.  
-Com ele, é possível visualizar **avisos, notícias, professores, eventos** e entrar em contato diretamente com a escola.
+O **Portal Escolar** visa facilitar a comunicação e o gerenciamento entre **alunos, professores e administração escolar**, oferecendo um ambiente digital completo com avisos, notícias, perfis e contato direto com a escola.
 
 ---
 
 ## 🧩 Estrutura do Sistema  
 
-O portal é dividido em várias páginas, cada uma com sua função específica:
+O portal é dividido em várias páginas, cada uma com sua função:
 
-- 🏠 **Página Inicial** — exibe avisos, destaques e novidades da escola.  
-- 👩‍🏫 **Professores** — mostra nomes, disciplinas e contatos de cada professor.  
-- 📰 **Notícias** — contém cards de notícias com imagem, título e resumo.  
-- 📸 **Galeria** — apresenta fotos de eventos e atividades escolares.  
-- 📞 **Contato** — formulário simples com nome, mensagem e botão “Enviar”.  
-- 🔐 **Login** — sistema de acesso para **alunos, professores e administração**.
+- 🏠 **Página Inicial** — avisos e destaques da escola  
+- 👩‍🏫 **Professores** — nomes, disciplinas e e-mails  
+- 📰 **Notícias** — cards com imagem, título e resumo  
+- 📸 **Galeria** — fotos de eventos e atividades escolares  
+- 📞 **Contato** — formulário simples com nome, mensagem e botão “Enviar”  
+- 🔐 **Login** — acesso de **alunos, professores e administração**
 
 ---
 
@@ -32,31 +31,33 @@ O portal é dividido em várias páginas, cada uma com sua função específica:
 | **HTML5** | Estrutura das páginas | [HTML MDN](https://developer.mozilla.org/pt-BR/docs/Web/HTML) |
 | **CSS3** | Estilização e layout responsivo | [CSS MDN](https://developer.mozilla.org/pt-BR/docs/Web/CSS) |
 | **JavaScript** | Interatividade e comportamento dinâmico | [JavaScript MDN](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) |
-| **PHP** | Processamento no servidor e login | [PHP Manual](https://www.php.net/manual/pt_BR/) |
-| **MySQL** | Banco de dados (futuro) | [MySQL Docs](https://dev.mysql.com/doc/) |
+| **PHP** | Processamento no servidor, login e integração com o banco | [PHP Manual](https://www.php.net/manual/pt_BR/) |
+| **Python** | Scripts de automação e prototipagem do banco de dados | [Python Docs](https://docs.python.org/pt-br/3/) |
+| **MySQL** | Armazenamento de usuários, notícias e dados escolares | [MySQL Docs](https://dev.mysql.com/doc/) |
 
 ---
 
 ## 📱 Ferramentas de Desenvolvimento  
 
-O projeto está sendo desenvolvido principalmente em dispositivos móveis, utilizando:
+O desenvolvimento é feito principalmente em dispositivos móveis e no ambiente escolar:
 
-- **📲 Termux** — para rodar o servidor PHP localmente.  
-- **💻 Acode** — editor de código leve e prático para Android.  
-- **🖥️ PC (na escola)** — para testes, ajustes e apresentações.
+- **📲 Termux** — servidor PHP e MySQL local no Android  
+- **💻 Acode** — editor de código leve para HTML, CSS, JS e PHP  
+- **🐍 Pydroid 3 / QPython** — para scripts Python auxiliares  
+- **🖥️ PC da Escola** — para testes, ajustes e apresentações
 
 ---
 
 ## 👤 Login de Exemplo  
 
-Para testes locais, o sistema conta com dois usuários cadastrados:
+Para testes locais:
 
 | Tipo de Usuário | Login | Senha |
 |------------------|--------|--------|
 | 👩‍🏫 Professor | `userprof` | `123456` |
 | 🧑‍🎓 Aluno | `useraluno` | `12345` |
 
-Após o login, cada tipo de usuário é redirecionado para sua respectiva área.
+O sistema identifica o tipo de usuário e redireciona para a área correta (perfil do aluno ou professor).
 
 ---
 
@@ -73,6 +74,10 @@ portal-escolar/
 ├── js/
 │ └── script.js
 ├── php/
-│ └── login.php
+│ ├── login.php
+│ └── conexao.php
+├── python/
+│ ├── init_db.py
+│ └── backup_data.py
 └── img/
-└── (imagens da escola, professores, eventos)
+└── (imagens da escola, professores e eventos)
