@@ -1,6 +1,6 @@
 # 🏫 Portal Escolar  
 
-Bem-vindo ao **Portal Escolar**, um projeto acadêmico desenvolvido por **Gabriel Túlio** com o objetivo de criar um sistema web simples e funcional para escolas.  
+Bem-vindo ao **Portal Escolar**, um projeto acadêmico desenvolvido por **Gabriel Túlio** é **César Lopes** com o objetivo de criar um sistema web simples e funcional para escolas.  
 O projeto foi construído com foco em **acessibilidade, organização e aprendizado prático** nas áreas de **HTML, CSS, JavaScript, PHP e MySQL**.
 
 ---
